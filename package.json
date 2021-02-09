@@ -1,7 +1,7 @@
 {
   "name": "@soggygate/uxrequest",
-  "version": "1.0.1",
-  "description": "XHR request for UMI.CMS",
+  "version": "1.0.2",
+  "description": "XHR request",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No test specified\""
