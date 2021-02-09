@@ -5,19 +5,6 @@ function uxRequest(params, timeout = 5000) {
 
 
 	const xhrPromise = new Promise((resolve, reject) => {  
-/*
-		params = {
-			...{
-			'url': '', 
-			'data': '', 
-			'method': 'POST', 
-			'headers': {},
-			'credentials': false,
-			'blob': false
-			}, 
-			...params
-		}
-*/
 
 		params = Object.assign({
 			'url': '', 
