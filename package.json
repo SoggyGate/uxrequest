@@ -7,5 +7,13 @@
     "test": "echo \"No test specified\""
   },
   "author": "Vladimir Orlov",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoggyGate/uxrequest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SoggyGate/uxrequest/issues"
+  },
+  "homepage": "https://github.com/SoggyGate/uxrequest#readme"
 }
