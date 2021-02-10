@@ -13,6 +13,19 @@ function uxRequest(params, timeout = 5000) {
 
 
 	const xhrPromise = new Promise((resolve, reject) => {  
+/*
+		params = {
+			...{
+			'url': '', 
+			'data': '', 
+			'method': 'POST', 
+			'headers': {},
+			'credentials': false,
+			'blob': false
+			}, 
+			...params
+		}
+*/
 
 		params = Object.assign({
 			'url': '', 
@@ -20,7 +33,7 @@ function uxRequest(params, timeout = 5000) {
 			'method': 'POST', 
 			'headers': {},
 			'credentials': false,
-			'blob': false
+			'responseType':false
 			},params);
 
 		//if not url
@@ -29,13 +42,20 @@ function uxRequest(params, timeout = 5000) {
 		});
 
 		let xhr = new XMLHttpRequest();
+		
 		xhr.open(params.method, params.url);
 
 		//adding headers
-		for(let key in params.headers){
+		for (let key in params.headers) {
 			xhr.setRequestHeader(key, params.headers[key]) 
 		}
-
+		
+		xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+		
+		if (params.credentials) {
+			xhr.withCredentials = true;
+		}
+		
 		xhr.onreadystatechange = () => {
 
 			if (xhr.readyState != 4) return;//do nothing
@@ -59,22 +79,32 @@ function uxRequest(params, timeout = 5000) {
 			});
 		};
 
-		if (params.credentials) {
-			xhr.withCredentials = true;
-		}
+						   
+							  
+   
 
-		//if response must be BLOB
-		if (params.blob) {
-			xhr.responseType = "arraybuffer";
+		
+		if (params.responseType) {
+			//if response must be BLOB
+			if (params.responseType == 'blob') {
+				xhr.responseType = "arraybuffer";
+			} else {
+				xhr.responseType = params.responseType;
+			}
 		}
+		
+		
 
 		xhr.send(params.data);
 
 	});
 
 	const timeoutPromise = new Promise((resolve, reject) => {
+		
 		let id = setTimeout(() => {
+			
 			clearTimeout(id);
+			
 			reject({
 				'description': 'timeout',
 				'code':	504		
