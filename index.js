@@ -1,5 +1,13 @@
 'use strict';
 
+/**
+
+	Usage:
+	
+	https://help-dev.ru/frontend/xhr-as-promise.html
+
+*/
+
 function uxRequest(params, timeout = 5000) {
 	
 
